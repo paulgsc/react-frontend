@@ -1,15 +1,16 @@
 import { auth} from "../lib/firebase";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { userLoginFailure, userLoginRequest, userLoginSuccess } from "../reducers/firebaserReducer";
 
 
 export const gmailRegister = () => async (dispatch) => {
     dispatch(userLoginRequest());
 
-    const provider = new auth.GoogleAuthProvider();
-    auth.signInWithPopup(auth, provider)
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
     .then((result) => {
 
-    const credential = auth.GoogleAuthProvider.credentialFromResult(result);
+    const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     const user = result.user
     dispatch(userLoginSuccess({
