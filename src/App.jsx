@@ -1,24 +1,21 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useDispatch } from "react-redux";
+import { gmailRegister } from "./actions/firebaseActions";
 
 function App() {
+  const dispatch = useDispatch();
+  const handleGmail = (e) => {
+    e.preventDefault();
+    dispatch(gmailRegister());
+  };
+
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <p>Choo Choo! This is an example of a Vite + React app running on Railway.</p>
-      </div>
-    </>
-  )
+    <div>
+      <h1>
+        foo!
+        <button onClick={handleGmail}>click me!</button>
+      </h1>
+    </div>
+  );
 }
 
-export default App
+export default App;
